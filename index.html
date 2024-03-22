@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coding Challenge 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: lightseagreen;
+        }
+
+        span {
+            background-color: yellow;
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SRC Honesty Store</h1>
+    <div>
+        <span onclick="totalP(50)"> Burger - P50.00</span>
+        <span onclick="totalP(30)"> Fries - P30.00</span>
+        <span onclick="totalP(20)"> Juice - P20.00</span>
+    </div>
+
+    <h4>The total payment is: </h4>
+    <h3 id="total">0</h3>
+    <span onclick="clearP()">Clear</span>
+
+    <script>
+        let total = 0;
+
+        function totalP(price) {
+            const item = findItemByPrice(price);
+            if (item) {
+                total += price;
+                updateTotalDisplay(total);
+            }
+        }
+
+        function clearP() {
+            if (total > 0) {
+                if (confirm("Do you really wish to clear the total amount?")) {
+                    total =  0;
+                    updateTotalDisplay(total);
+                    alert("The total payment has been cleared successfully.");
+                }
+            } else {
+                alert("Your total payment is already zero.");
+            }
+        }
+
+        function updateTotalDisplay(value) {
+            const totalDisplay = document.getElementById('total');
+            totalDisplay.textContent = value;
+        }
+
+        function findItemByPrice(price) {
+            const items = {
+                50: 'Burger',
+                30: 'Fries',
+                20: 'Juice'
+            };
+            return items[price];
+        }
+    </script>
+
+</body>
+</html>
